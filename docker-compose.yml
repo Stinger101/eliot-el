@@ -2,20 +2,26 @@ version: '2'
 
 services:
     ms:
-        build: ../docker-leshan/
+        build: ../docker-leshan-el/
         ports:
         - 8080:8080/tcp
         - 5683:5683/udp
         depends_on:
         - bss
     bss:
-        build: ../docker-leshan/
+        build: ../docker-leshan-el/
         ports:
         - 8081:8080
         command: bootstrap
     light:
        build: .
        command: ${LIGHT}
+       depends_on:
+       - bss
+       - ms
+    weather:
+       build: .
+       command: ${WEATHER}
        depends_on:
        - bss
        - ms
