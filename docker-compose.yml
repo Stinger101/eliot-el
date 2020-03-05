@@ -25,6 +25,18 @@ services:
        depends_on:
        - bss
        - ms
+    presence:
+        image: alliasd/eliot
+        command: ${PRESENCE}
+        depends_on:
+        - bss
+        - ms
+    radiator:
+       image: alliasd/eliot
+       command: ${RADIATOR}
+       depends_on:
+       - bss
+       - ms
 
 
 
